@@ -8,26 +8,17 @@ const Sidebar = () => {
     const spotifyApi = useSpotify();
     const {data:session, status} = useSession();
     const [playlists, setPlaylists] = useState([]);
-    const [playlistId, setPlaylistId] = useRecoilState(playlistIdState)
-    console.log("the session",session);
+    const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
     useEffect(()=>{
         if(spotifyApi.getAccessToken()){
             spotifyApi.getUserPlaylists().then((data)=>{
-                
-                console.log("user playlist function", spotifyApi.getUserPlaylists())
-                console.log("user playlist", data)
                 setPlaylists(data.body.items)
             })
         }
     },[session, spotifyApi ])
-    console.log('the playlists', playlists)
-    console.log("you get the playlist>>>>", playlistId)
     return (
-        <div className="text-gray-500 p-5 text-sm border-gray-900 overflow-y-scroll h-screen scrollbar-hide">
+        <div className="text-gray-500 p-5 text-sm lg:text-sm border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex">
             <div className="space-y-4">
-            <button onClick={()=>signOut()} className="flex items-center space-x-2 hover:text-white">
-                    <p>Lougout</p>
-                </button>
                 <button className="flex items-center space-x-2 hover:text-white">
                     <HomeIcon
                         className="h-5 w-5"
