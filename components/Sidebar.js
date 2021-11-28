@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import {HeartIcon, HomeIcon, LibraryIcon, PlusCircleIcon, RssIcon, SearchIcon} from "@heroicons/react/outline"
-import { signOut, useSession } from 'next-auth/react'
+import {HomeIcon, LibraryIcon, PlusCircleIcon, RssIcon, SearchIcon} from "@heroicons/react/outline"
+import {HeartIcon} from "@heroicons/react/solid"
+import {useSession } from 'next-auth/react'
 import useSpotify from '../hooks/useSpotify'
 import { useRecoilState } from 'recoil'
 import { playlistIdState } from '../atoms/playlistAtoms'
@@ -17,7 +18,7 @@ const Sidebar = () => {
         }
     },[session, spotifyApi ])
     return (
-        <div className="text-gray-500 p-5 text-sm lg:text-sm border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex">
+        <div className="text-gray-500 p-5 text-sm lg:text-sm border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex pb-36">
             <div className="space-y-4">
                 <button className="flex items-center space-x-2 hover:text-white">
                     <HomeIcon
@@ -46,13 +47,13 @@ const Sidebar = () => {
                 </button>
                 <button className="flex items-center space-x-2 hover:text-white">
                     <HeartIcon
-                        className="h-5 w-5"
+                        className="h-5 w-5 text-blue-500"
                     />
                     <p>Create playlist</p>
                 </button>
                 <button className="flex items-center space-x-2 hover:text-white">
                     <RssIcon
-                        className="h-5 w-5"
+                        className="h-5 w-5 text-green-500"
                     />
                     <p>Your episodes</p>
                 </button>
