@@ -12,7 +12,7 @@ async function refreshAccessToken(token){
             ...token,
             accessToken: refreshedToken.access-token,
             accessTokenExpires: Date.now + refreshedToken.expires_in * 1000, // = 1 hour as 3600 returns from spotify API
-            refreshToken: refreshedToken.refresh_token ?? token.refreshToken
+            refreshToken: refreshedToken.refresh_token && token.refreshToken
         }
     } catch (error) {
         console.error(error)
@@ -64,9 +64,9 @@ export default NextAuth({
       },
       
       async session({session, token}){
-          session.user.accessToken = token.accessToken;
-          session.user.refreshToken = token.refreshToken;
-          session.user.username = token.username;
+          session.user.accessToken = await token.accessToken;
+          session.user.refreshToken = await token.refreshToken;
+          session.user.username = await token.username;
           return session;
       }
   }
